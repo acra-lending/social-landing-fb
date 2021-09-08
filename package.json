@@ -8,8 +8,12 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0"
+    "qs": "^6.5.2",
+    "vee-validate": "4.4.0-alpha.2",
+    "vue": "^3.0.0",
+    "yup": "0.32.8"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
@@ -38,5 +42,13 @@
     "> 1%",
     "last 2 versions",
     "not dead"
-  ]
+  ],
+  "keywords": [
+    "forms",
+    "inputs",
+    "vee-validate",
+    "vue",
+    "vuejs"
+  ],
+  "description": "Showcases how to implement a form wizard with vee-validate's composition API functions"
 }
