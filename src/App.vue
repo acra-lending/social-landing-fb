@@ -287,7 +287,7 @@ export default {
           'Content-Type': 'application/x-www-form-urlencoded'
         },
         data: qs.stringify(formData),
-        url: 'https://secure.velocify.com/Import.aspx?Provider=CSCWebLeadRetailPages&Client=31215&CampaignId=58'
+        url: 'https://secure.velocify.com/Import.aspx?Provider=CSCWebLeadRetailPages&Client=31215&CampaignId=59'
       }
       try {
         let res = await axios(options)
