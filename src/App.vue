@@ -129,7 +129,7 @@
               <ErrorMessage name="email" class="text-red-600 animate-pulse" />
           </FormStep>
         </div>
-
+        <loader class="flex justify-center pt-3 pb-5" v-if="loading"></loader>
       </FormWizard>
 
           <footer>
@@ -155,6 +155,7 @@ import * as yup from "yup";
 import FormWizard from "@/components/FormWizard.vue";
 import FormStep from "@/components/FormStep.vue";
 import Steps from "@/components/Steps.vue";
+import Loader from "@/components/Loader.vue";
 
 import purchase from "@/assets/purchase.svg";
 import purchaseSelected from "@/assets/purchase-white.svg";
@@ -168,7 +169,7 @@ import phoneEmailIcon from "@/assets/phone-email.svg";
 import phoneIcon from "@/assets/phone-alt-solid.svg";
 
 import axios from 'axios'
-import qs from 'qs'
+import { ref } from 'vue';
 
 const loanAmounts = [
     {"id": 1, "amount": "$0 - $99,000"},
@@ -240,7 +241,8 @@ export default {
     FormStep,
     Field,
     ErrorMessage,
-    Steps
+    Steps,
+    Loader
   },
   setup() {
     // break down the validation steps into multiple schemas
@@ -279,25 +281,19 @@ export default {
     /**
      * Only Called when the last step is submitted
      */
-    async function onSubmit(formData) {
-      // console.log(JSON.stringify(formData, null, 2));
-      const options = {
-        method: 'POST',
-        headers: { 
-          'Content-Type': 'application/x-www-form-urlencoded'
-        },
-        data: qs.stringify(formData),
-        url: 'https://secure.velocify.com/Import.aspx?Provider=CSCWebLeadRetailPages&Client=31215&CampaignId=59'
-      }
-      try {
-        let res = await axios(options)
-        console.log(res.data)
-        location.href = 'https://acralending.com/thankyou';
-      } catch (err) {
-        console.error(err)
-      }
-      // https://secure.velocify.com/Import.aspx?Provider=CSCWebLeadRetailPages&Client=31215&CampaignId=58
-      // https://secure.velocify.com/Import.aspx?Provider=CSCWebLeadRetailPages&Client=31215&CampaignId=59
+    const loading = ref(false);
+    function onSubmit(formData) {
+      loading.value = true;
+      axios.post('https://nonqm.acralending.com/send', {
+        formData
+      }).then(response => {
+        if (response.status != 200) {
+          console.log(response)
+        } else {
+          location.href= 'https://acralending.com/thankyou';
+          loading.value = false;
+        }
+      })
     }
 
     return {
@@ -312,7 +308,8 @@ export default {
       idCardIcon,
       locatorIcon,
       phoneEmailIcon,
-      phoneIcon
+      phoneIcon,
+      loading
     };
   },
 
@@ -363,9 +360,4 @@ select {
   display: block;
 
 }
-/* input[type="radio"] {
-  margin: 10px auto;
-  width: 20px;
-  height: 40px;
-} */
 </style>
