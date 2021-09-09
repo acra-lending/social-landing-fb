@@ -28,6 +28,6 @@ app.post('/send', async (req, res) => {
 res.send('Post received');
 });
 
-app.listen(3300, () => {
-    console.log('Server listening on port 3300');
+app.listen(3301, () => {
+    console.log('Server listening on port 3301');
 });
