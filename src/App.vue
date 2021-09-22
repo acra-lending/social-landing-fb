@@ -7,9 +7,9 @@
             </a>
         </div>
         <div class="order-last sm:p-3 text-lg font-bold text-gray-600">
-            <a href="tel:8555092136" class="inline-block">
+            <a href="tel:8554649862" class="inline-block">
               <img class="w-8 inline-block mr-1 mt-1 sm:mt-0 sm:mb-1" :src="phoneIcon">
-              <div class="hidden sm:inline-block sm:text-2xl">(855) 509-2136</div>
+              <div class="hidden sm:inline-block sm:text-2xl">(855) 464-9862</div>
             </a>
         </div>
     </nav>
